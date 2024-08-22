@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -9,12 +8,12 @@
     <meta name="description" content="Web site created using create-react-app" />
     <title>React App</title>
 </head>
-
 <body>
     <script>
-        // Redirect to index.html
-        window.location.replace("/Chat-App" + window.location.pathname);
+        // Redirect to index.html only if the path is not already index.html
+        if (window.location.pathname !== '/Chat-App/index.html') {
+            window.location.replace("/Chat-App/index.html");
+        }
     </script>
 </body>
-
 </html>
