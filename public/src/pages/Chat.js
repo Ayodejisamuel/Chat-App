@@ -18,7 +18,7 @@ const Chat = () => {
   useEffect(() => {
     const checkUser = async () => {
       if (!localStorage.getItem("chat-app-user")) {
-        navigate("/");
+        navigate("/Chat-App/login");
       } else {
         setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
       }
@@ -79,21 +79,22 @@ const Chat = () => {
 export default Chat;
 
 const Wrapper = styled.div`
-  background-color: #131324;
+  background-color: #0a0a23;
   height: 100vh;
   width: 100vw;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  // padding: 1rem;
 
   .container {
     display: grid;
     grid-template-columns: 25% 75%;
     height: 100vh;
     width: 100vw;
-    // background-color: #00000076;
-    // border-radius: 10px;
+  background-color: #0a0a23;
+ 
     overflow: hidden;
 
     @media screen and (min-width: 720px) and (max-width: 1024px) {
@@ -106,7 +107,7 @@ const Wrapper = styled.div`
   }
 
   .contact-section {
-    background-color: #131324;
+    background-color: #0d0d30;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -115,7 +116,7 @@ const Wrapper = styled.div`
   }
 
   .chat-section {
-    // background-color: #2b2b3d;
+    background-color: #0a0a23;
     padding: 1rem;
     display: flex;
     flex-direction: column;

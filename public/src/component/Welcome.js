@@ -40,7 +40,7 @@ const Container = styled.div`
   justify-content: center;
   color: white;
   text-align: center;
-  background-color: #131324;
+  background-color: #0a0a23;
   height: 100%;
   width: 100%;
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import pingit from '../Images/pingit.webp'
 
 const Contact = ({ currentUser, contacts, changeChat }) => {
   const [currentUsername, setCurrentUsername] = useState(undefined);
@@ -23,11 +24,12 @@ const Contact = ({ currentUser, contacts, changeChat }) => {
       {currentUsername && currentUserImage && (
         <Wrapper>
           <div className="brand">
-            <h1>Snabby</h1>
+            <img src={pingit} alt="logo"></img>
+            <h1>PingIT</h1>
           </div>
           <div className="contacts">
           {contacts.map((contact, index) => {
-  console.log(contact.avatarImage); // Log avatarImage for each contact
+
   return (
     <div
       key={contact._id}
@@ -72,7 +74,8 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 10% 75% 15%;
   overflow: hidden;
-  padding: 1rem;
+  // padding: 1rem;
+  background-color: #0d0d30;
 
 
   .brand {
@@ -80,9 +83,17 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
+ 
+    width: %;
+    margin: auto;
+    img{
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem
+    }
     h1 {
       color: white;
-      text-transform: uppercase;
+      // text-transform: uppercase;
     }
   }
 
@@ -95,12 +106,15 @@ const Wrapper = styled.div`
     cursor:pointer;
     padding-right: 0.5rem;
     transition: 0.5s ease-in-out;
+    
 
     &::-webkit-scrollbar {
       width: 0.3rem;
+      height: 2rem;
       &-thumb {
         background-color: #ffffff39;
-        width: 0.2rem;
+        width: 3rem;
+        height: 1rem
         border-radius: 1rem;
       }
     }
@@ -123,7 +137,7 @@ const Wrapper = styled.div`
 
       .avatar {
         img {
-          height: 3rem;
+          height: 2.5rem;
  
         }
       }
@@ -131,13 +145,14 @@ const Wrapper = styled.div`
       .username {
         h1 {
           color: white;
-          font-size: 1.2rem;
+          font-size: 1rem;
         }
       }
     }
 
     .selected {
       background-color: #9a86f3;
+      font-size: 1rem;
     }
   }
 
@@ -152,7 +167,7 @@ const Wrapper = styled.div`
 
     .avatar {
       img {
-        height: 4rem;
+        height: 3rem;
         max-inline-size: 100%;
       }
     }
@@ -160,7 +175,7 @@ const Wrapper = styled.div`
     .username {
       h2 {
         color: white;
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
     }
 
@@ -168,7 +183,7 @@ const Wrapper = styled.div`
       gap: 0.5rem;
       .username {
         h2 {
-          font-size: 1rem;
+          font-size: .8rem;
         }
       }
     }

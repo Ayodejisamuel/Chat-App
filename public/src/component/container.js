@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import ChatInput from "./chatInput";
+import Messages from "./Messages";
 
 const ChatContainer = ({ currentChat }) => {
+  const handleMessage = (msg) => {};
   return (
     <>
       {currentChat && (
@@ -9,18 +12,15 @@ const ChatContainer = ({ currentChat }) => {
           <div className="chat-header">
             <div className="user-details">
               <div className="user-avatar">
-                <img
-                  src={currentChat.avatarImage}
-                  alt="avatar"
-                />
+                <img src={currentChat.avatarImage} alt="avatar" />
               </div>
               <div className="username">
                 <h3>{currentChat.username}</h3>
               </div>
             </div>
           </div>
-          <div className="chat-messages"></div>
-          <div className="chat-input"></div>
+          <Messages />
+          <ChatInput inputMessage={handleMessage} />
         </Wrapper>
       )}
     </>
@@ -35,7 +35,8 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: space-between;
     align-items: center;
-    background-color: gray;
+    font-family: "Josefin Sans", sans-serif;
+
     padding: 0 2rem;
 
     .user-details {
@@ -46,13 +47,13 @@ const Wrapper = styled.div`
 
     .user-avatar {
       img {
-        height: 3rem;
+        height: 2.5rem;
       }
     }
 
     .username {
-    color: white;
-    font-size: 1.5rem;
+      color: white;
+      font-size: 1rem;
     }
   }
 `;

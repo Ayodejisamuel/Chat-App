@@ -1,0 +1,406 @@
+* {
+    font-family: "Manrope", sans-serif;
+}
+
+
+.page-container {
+    background: #F6F7F8;
+    opacity: 1;
+    box-sizing: border-box;
+    /* height: 100vh; */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    /* background-color: red; */
+    width: calc(100vw - 36px);
+    /* height: calc(100vh - 36px); */
+    box-sizing: border-box;
+
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    align-items: center;
+    grid-row: 1;
+    height: 72px;
+    width: 100%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 70px;
+    opacity: 1;
+}
+
+
+.logo {
+    margin-left: 1rem;
+}
+
+.logo img {
+    height: 48px;
+    width: 210px;
+}
+
+.overview-div {
+    display: flex;
+    justify-content: space-evenly;
+    gap: rem;
+    align-items: center;
+}
+
+.overview-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .4rem;
+    border-radius: 41px;
+    padding: .5rem;
+}
+
+.overview-content:hover {
+    font-family: Manrope;
+    background: #01F0D0 0% 0% no-repeat padding-box;
+
+    opacity: 1;
+    cursor: pointer;
+}
+
+.overview-content img {
+
+    color: #072635;
+
+}
+
+.overview-content span {
+    font: normal normal bold 14px/19px Manrope;
+    font-size: 14px;
+    letter-spacing: 0px;
+    color: #072635;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.patient {
+    background: #01F0D0 0% 0% no-repeat padding-box;
+}
+
+.contact {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+
+}
+
+.contact-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+ 
+.woman-details h5 {
+    font-size: 14px;
+    margin-bottom: .1rem;
+    font-weight: 800;
+    color:#072635
+}
+
+.woman-details span {
+    font-size: 14px;
+    color: #707070;
+}
+.woman-details p {
+    font-size: 14px;
+    color: #707070;
+}
+
+
+
+.contact-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .6rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-row: 2;
+    gap: 1.5rem;
+    margin-top: 16px;
+    height: calc(100vh - 64px);
+    /* background-color: black; */
+
+
+}
+
+.patient-contact {
+    background-color: #FFFFFF ;
+    border-radius: 16px;
+    opacity: 1;
+    grid-template-columns: 2fr;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 8px;
+    flex: 1;
+    /* margin: auto 3rem; */
+    
+
+}
+
+ 
+.patient-header {
+    display: flex;
+    margin: 1rem 1rem ;
+    justify-content: space-between;
+    
+}
+.patient-header h3 {
+    color: #072635;
+    font-weight: 800;
+    font-size: 24px;
+}
+
+.contact-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ 
+    margin: auto .5rem;
+ 
+    margin-bottom: 1rem;
+   
+}
+
+.contact-list-container {
+    overflow-y: auto;
+  
+    flex: 1;
+    /* padding: 0 1rem; */
+}
+
+.contact-list-container::-webkit-scrollbar {
+    width: 4px;
+
+}
+
+.contact-list-container::-webkit-scrollbar-thumb {
+    background-color: gray;
+    color: #072635;
+    border-radius: 8px;
+
+}
+
+.history {
+    background-color: #FFFFFF  ;
+    border-radius: 16px;
+    opacity: 1;
+    gap: 1rem;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1rem;
+}
+.history h4 {
+    color:#072635;
+}
+
+.chart-card-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+ 
+ 
+ 
+
+}
+
+.img-div {
+
+}
+.chart-card {
+    /* margin: 1rem; */
+background: #E0F3FA ;
+padding: 1rem;
+border-radius: 12px;
+opacity: 1;
+width: 30%;
+ display: flex;
+ justify-content: space-between;
+box-sizing: border-box;
+height: 242px;
+
+}
+
+.third {
+background-color: #FFE6F1;
+}
+
+.second {
+    background-color: #FFE6E9;
+}
+
+.img-div img {
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.card-details p {
+    text-align: left;
+ margin-top: 1rem;
+letter-spacing: 0px;
+color: #072635;
+text-transform: capitalize;
+opacity: 1;
+font-weight: bold;
+/* margin-bottom: .5rem; */
+font-size: 16px;
+text-align: left;
+}
+
+.card-details h4 {
+    font-size: 24px;
+    opacity: 1;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+
+.sex-age {
+    font-size: 14px;
+    color: #707070;
+}
+.more-img {
+    color:#072635;
+}
+
+.lower {
+    display: flex;
+    gap: .4rem;
+    justify-content: left;
+
+}
+
+
+.profile {
+    background-color: #FFFFFF  ;
+    border-radius: 16px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+
+    
+}
+
+.profile-wrapper {
+    padding: 1rem;
+}
+
+.imgprofile-div {
+    margin: auto;
+    width: 200px;
+ text-align: center;
+}
+
+.imgprofile-div div {
+    text-align: center;
+    font: normal normal 800 24px/33px Manrope;
+    letter-spacing: 0px;
+    color: #072635;
+    opacity: 1;
+    margin-top: 2rem;
+}
+ 
+.details-wrapper {
+ margin-top: .1rem;
+}
+
+.details-wrapperr {
+    margin-top: 1rem;
+    justify-content: center;
+}
+.details-container {
+    margin-top: 2rem;
+}
+
+.contact-img {
+    display: flex;
+    align-items: center;
+
+}
+.details-list {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    align-content: center;
+ 
+}
+
+.woman-detailss  p{
+    font-size: 14px;
+    font-weight: 500;
+    color: #072635;
+}
+
+.sex-agee{
+    color: #072635;
+    font-weight: 900;
+    font-size: 14px;
+
+}
+ .icon-img {
+    margin-right: .5rem;
+ }
+@media screen and (max-width: 1200px) {
+    .woman-details p {
+        font-size: 8px;
+    }
+    .woman-details span {
+        font-size: 10px;
+    }
+
+ 
+    .woman-details h5 {
+        font-size: 10px;
+        margin-top: .1rem;
+
+
+    }
+
+    .logo img {
+        width: 150px;
+    }
+    
+    .card-details p {
+        font-size: 12px;
+        margin-bottom: .2rem;
+    }
+
+    .card-details h4 {
+font-size: 20px;
+    }
+    .normal {
+        font-size: 13px;
+    }
+
+    .overview-div {
+        font-size: 14px;
+    }
+}
+
+@media screen and( max-width: 1250px) {
+
+}

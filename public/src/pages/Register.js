@@ -5,7 +5,7 @@ import { Link, useNavigate,} from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import hambuger from "../Images/hambugger.png";
+import pingit from "../Images/pingit.webp";
 import { registerRoute } from "../utils/APIRoutes";
 
 const Register = () => {
@@ -105,8 +105,8 @@ const Register = () => {
       
       <form onSubmit={handleSubmit}>
         <Brand>
-          <img src={hambuger} alt="brand-logo" />
-          <h1>Snabby</h1>
+          <img src={pingit} alt="brand-logo" />
+          <h1>PingIT</h1>
         </Brand>
         <input
           type="text"
@@ -170,7 +170,7 @@ const Brand = styled.div`
 
     h1 {
         color: white;
-        text-transform: uppercase;            
+        // text-transform: uppercase;            
     }
 }
 `;

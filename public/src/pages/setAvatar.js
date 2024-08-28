@@ -54,7 +54,7 @@ console.log('image url', data.image)
           JSON.stringify(user)
         );
 console.log('avatar image successfully set')
-        navigate("/");
+        navigate("/Chat-App/");
       } else {
         toast.error("Error setting avatar. Please try again.", toastOptions);
       }
@@ -68,6 +68,7 @@ console.log('avatar image successfully set')
       const data = [];
       for (let i = 0; i < 4; i++) {
         try {
+          
           const response = await axios.get(`${api}/${Math.round(Math.random() * 1000)}.svg`);
       
           data.push(response.config.url); 
@@ -81,7 +82,7 @@ console.log('avatar image successfully set')
     };
   
     fetchAvatars();
-  },);
+  },[]);
   
 
   return (
@@ -109,7 +110,6 @@ console.log('avatar image successfully set')
           SET AS PROFILE PICTURE
         </button>
       </Wrapper>
-
       <ToastContainer />
     </>
   );

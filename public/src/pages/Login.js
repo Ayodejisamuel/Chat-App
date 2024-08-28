@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import {  Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import hambugger from '../Images/hambugger.png';
 import axios from 'axios';
 import { loginRoute } from "../utils/APIRoutes";
@@ -32,13 +32,13 @@ const Login = () => {
     useEffect(()=> {
             
         if(localStorage.getItem("chat-app-user")) {
-            navigate('/');
+            navigate('/Chat-App/login');
         }
 
     }, [navigate])
 
     const handleChange = (e) => {
-        setInputText({ ...inputText, [e.target.name]: e.target.value }) //name is Key... Value is value
+        setInputText({ ...inputText, [e.target.name]: e.target.value }) 
     };
 
     const handleSubmit = async (e) => {
@@ -56,7 +56,7 @@ const Login = () => {
                 
                 if (data.status === true) {
                     localStorage.setItem('chat-app-user', JSON.stringify(data.user));
-                    navigate('/');
+                    navigate('/Chat-App');
                 } else {
                     toast.error('Invalid username or password', toastOptions);
                 }
@@ -96,7 +96,7 @@ const Login = () => {
             <form onSubmit={handleSubmit}>
                 <Brand>
                     <img src={hambugger} alt="brand-logo" />
-                    <h1>Snabby</h1>
+                    <h1>PingIT</h1>
                 </Brand>
                 <input
                     type="text"
@@ -145,7 +145,7 @@ const Brand = styled.div`
 
     h1 {
         color: white;
-        text-transform: uppercase;            
+        // text-transform: uppercase;            
     }
 }
 `
