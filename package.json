@@ -12,6 +12,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://ayodejisamuel.github.io/PINGIT",
   "name": "snabby",
   "version": "1.0.0",
   "main": "index.js",

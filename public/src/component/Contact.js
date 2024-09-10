@@ -3,20 +3,25 @@ import styled from "styled-components";
 import pingit from '../Images/pingit.webp'
 
 const Contact = ({ currentUser, contacts, changeChat }) => {
+
   const [currentUsername, setCurrentUsername] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [selectedContactIndex, setSelectedContactIndex] = useState(undefined);
 
+
   useEffect(() => {
+    
     if (currentUser) {
       setCurrentUsername(currentUser.username);
       setCurrentUserImage(currentUser.avatarImage);
     }
   }, [currentUser]);
 
+
   const changeCurrentChat = (index, contact) => {
     setSelectedContactIndex(index);
     changeChat(contact);
+    
   };
 
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate,} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -37,7 +37,7 @@ const Register = () => {
     if (handleValidation()) {
       console.log("In validation", registerRoute);
       const { username, email, password } = inputText;
-      
+
       try {
         const { data } = await axios.post(registerRoute, {
           username,
@@ -53,25 +53,21 @@ const Register = () => {
           toast.error("Email alreday used, kindly login", toastOptions);
         }
       } catch (error) {
-
         toast.error(
           "Something went wrong. Please try again later.",
           toastOptions
         );
-
         console.error("Registration error:", error);
       }
     }
   };
 
   const handleValidation = () => {
-
     const { password, confirmPassword, username, email } = inputText;
 
     const validateEmail = (email) => {
       const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return re.test(email);
-
     };
     if (!validateEmail(email)) {
       toast.error("Invalid email format", toastOptions);
@@ -87,22 +83,17 @@ const Register = () => {
     }
     if (username.length < 3) {
       toast.error("username should be greater than 3 characters", toastOptions);
-
       return false;
     }
     if (password.length < 6) {
       toast.error("password should be greater than 6 characters", toastOptions);
-
       return false;
     }
-  
     return true;
   };
 
   return (
-
     <Wrapper>
-      
       <form onSubmit={handleSubmit}>
         <Brand>
           <img src={pingit} alt="brand-logo" />

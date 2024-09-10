@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getAllUsersRoute } from "../utils/APIRoutes";
+import { io } from "socket.io-client";
+import { getAllUsersRoute, host } from "../utils/APIRoutes";
 import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
 
 const Chat = () => {
+  const socket = useRef();
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
-  
-
 
   useEffect(() => {
     const checkUser = async () => {
@@ -26,24 +26,32 @@ const Chat = () => {
     checkUser();
   }, [navigate]);
 
-
+  useEffect(() => {
+    if (currentUser) {
+      socket.current = io(host);
+      socket.current.emit('add-user', currentUser._id);
+      return () => {
+        if (socket.current) {
+          socket.current.disconnect();
+        }
+      };
+    }
+  }, [currentUser]);
 
   useEffect(() => {
-
     const fetchContacts = async () => {
-      if (currentUser) {
-        if (currentUser.isAvatarImageSet) {
-          const data = await axios.get(
-            `${getAllUsersRoute}/${currentUser._id}`
-          );
-
-          setContacts(data.data);
- 
-        } else {
-          navigate("/setAvatar");
+      try {
+        if (currentUser) {
+          if (currentUser.isAvatarImageSet) {
+            const { data } = await axios.get(`${getAllUsersRoute}/${currentUser._id}`);
+            setContacts(data);
+          } else {
+            navigate("/setAvatar");
+          }
         }
+      } catch (error) {
+        console.error("Error fetching contacts:", error);
       }
-
     };
 
     fetchContacts();
@@ -65,10 +73,14 @@ const Chat = () => {
         </div>
 
         <div className="chat-section">
-          { currentChat === undefined ? (
+          {currentChat === undefined ? (
             <Welcome currentUser={currentUser} />
           ) : (
-            <ChatContainer currentChat={currentChat}  />
+            <ChatContainer
+              currentChat={currentChat}
+              currentUser={currentUser}
+              socket={socket}
+            />
           )}
         </div>
       </div>
@@ -82,19 +94,17 @@ const Wrapper = styled.div`
   background-color: #0a0a23;
   height: 100vh;
   width: 100vw;
- 
+
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding: 1rem;
 
   .container {
     display: grid;
     grid-template-columns: 25% 75%;
     height: 100vh;
     width: 100vw;
-  background-color: #0a0a23;
- 
+    background-color: #0a0a23;
     overflow: hidden;
 
     @media screen and (min-width: 720px) and (max-width: 1024px) {
@@ -112,7 +122,6 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
- 
   }
 
   .chat-section {

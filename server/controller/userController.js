@@ -1,23 +1,25 @@
-import bcrypt from 'bcryptjs';
-import User from '../model/userModel.js';
+import bcrypt from "bcryptjs";
+import User from "../model/userModel.js";
 
 export const register = async (req, res, next) => {
+  
   try {
     const { password, email, username } = req.body;
 
     const usernameCheck = await User.findOne({ username });
+
     if (usernameCheck) {
-      return res.json({ msg: 'Username already used', status: false });
-      
+      return res.json({ msg: "Username already used", status: false });
+
     }
 
     const emailCheck = await User.findOne({ email });
     if (emailCheck) {
-      return res.json({ msg: 'Email already used', status: false });
+      return res.json({ msg: "Email already used", status: false });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    
+
     const user = await User.create({
       email,
       username,
@@ -38,12 +40,12 @@ export const login = async (req, res, next) => {
 
     const user = await User.findOne({ username });
     if (!user) {
-      return res.json({ msg: 'Incorrect username or password', status: false });
+      return res.json({ msg: "Incorrect username or password", status: false });
     }
 
     const correctPassword = await bcrypt.compare(password, user.password);
     if (!correctPassword) {
-      return res.json({ msg: 'Incorrect username or password', status: false });
+      return res.json({ msg: "Incorrect username or password", status: false });
     }
 
     user.password = undefined;
@@ -65,7 +67,7 @@ export const setAvatar = async (req, res, next) => {
         isAvatarImageSet: true,
         avatarImage,
       },
-      { new: true }  
+      { new: true }
     );
 
     if (!userData) {
@@ -81,15 +83,13 @@ export const setAvatar = async (req, res, next) => {
   }
 };
 
-
-
 export const getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find({ _id: { $ne: req.params.id } }).select([
-      'email',
-      'username',
-      '_id',
-      'avatarImage'
+      "email",
+      "username",
+      "_id",
+      "avatarImage",
     ]);
 
     return res.json(users);
@@ -97,3 +97,9 @@ export const getAllUsers = async (req, res, next) => {
     next(ex);
   }
 };
+
+
+export const project = async (req, res, next) => {
+
+  
+}
