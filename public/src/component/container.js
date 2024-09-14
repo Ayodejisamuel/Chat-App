@@ -3,8 +3,10 @@ import styled from "styled-components";
 import ChatInput from "./chatInput";
 import { getAllMessagesRoute, sendMessageRoute } from "../utils/APIRoutes";
 import axios from "axios";
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import Logout from "./Logout";
+
+
 
 const ChatContainer = ({ currentChat, currentUser, socket }) => {
 
@@ -12,26 +14,27 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollDown = useRef();
 
+
   useEffect(() => {
-
-    const fetchMessages = async () => {
-
+    const postChat = async () => {
       try {
-        if(currentChat) {
+        if (currentChat) {
           const response = await axios.post(getAllMessagesRoute, {
             from: currentUser._id,
             to: currentChat._id,
           });
-            setMessages(response.data);
+          setMessages(response.data);
         }
-
-      } catch (error) {
-        console.log("error fetching messages", error);
+      } catch
+      (error) {
+        console.error("Error fetching current user:", error);
       }
     };
-    fetchMessages();
-  }, [currentChat]);
+    postChat();
+  },[currentUser, currentChat]);
 
+   
+  
 
 
   const handleSendMessage = async (message) => {
@@ -39,52 +42,58 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
       await axios.post(sendMessageRoute, {
         from: currentUser._id,
         to: currentChat._id,
-        message: message,
+        message,
       });
 
+   
       socket.current.emit("send-message", {
         to: currentChat._id,
         from: currentUser._id,
         message: message,
       });
 
-      const allmsgs = [...messages];
-      allmsgs.push({ fromSelf: true, message: message });
-      setMessages(allmsgs);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { fromSelf: true, message },
+      ]);
+
       console.log("Message sent successfully:", message);
     } catch (error) {
       console.log("Error sending message", error);
     }
-
   };
 
+  // Listen for new messages via socket
   useEffect(() => {
-    
-    const currentSocket = socket.current;
-   
-    if (currentSocket) {  
-      currentSocket.on("message-received", (message) => {
-        setArrivalMessage({ fromSelf: false, message: message });
+    if (socket.current) {
+      console.log('listening for messages...', socket.current.connected)
+      socket.current.on("message-received", (message) => {
+        setArrivalMessage({ fromSelf: false, message });
+        console.log('received message', message)
       });
+
+      console.log('after lsiteneing')
     }
-   
+
+    // Clean up socket listener when the component unmounts
+
     return () => {
-      if (currentSocket) {
-        currentSocket.off("message-received");
+      if (socket.current) {
+        socket.current.off("message-received");
       }
+
+      console.log('i am receiving messages', )
     };
-  }, [socket.current]);
-  
+  }, [socket, currentChat]);
   
   useEffect(() => {
     if (arrivalMessage) {
-      setMessages((prev) => [...prev, arrivalMessage]);
+      setMessages((prevMessages) => [...prevMessages, arrivalMessage]);
+      scrollDown.current?.scrollIntoView({ behavior: "smooth" });
     }
   }, [arrivalMessage]);
-
-  useEffect(() => {
-    scrollDown.current.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  
+   
 
   return (
     <>
@@ -101,25 +110,23 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
             </div>
             <Logout />
           </div>
+
           <div className="chat-container">
             {messages.map((message, index) => {
               return (
                 <div
                   key={uuidv4()}
-                  
                   className={`message ${
                     message.fromSelf ? "sent" : "received"
                   }`}
                 >
-                  <div    className="content">
+                  <div className="content">
                     <p>{message.message}</p>
                   </div>
                 </div>
               );
             })}
-            <div     ref={scrollDown} >
-
-            </div>
+            <div ref={scrollDown} />
           </div>
           <ChatInput handleSendMessage={handleSendMessage} />
         </Wrapper>
@@ -164,7 +171,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     gap: 1rem;
     overflow: auto;
-    height: 400px; /* Adjust this to fit your layout */
+    height: 400px;
     background-color: #0d0d30;
     border-radius: 10px;
   }
@@ -172,17 +179,17 @@ const Wrapper = styled.div`
   .message {
     display: flex;
     flex-direction: column;
-    max-width: 60%; /* Adjust the width of the messages */
+    max-width: 60%;
 
     &.sent {
-      align-self: flex-end; /* Sent messages to the right */
+      align-self: flex-end;
       .content {
         background-color: #9a86f3;
       }
     }
 
     &.received {
-      align-self: flex-start; /* Received messages to the left */
+      align-self: flex-start;
       .content {
         background-color: #4f04ff21;
       }

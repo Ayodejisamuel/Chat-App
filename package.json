@@ -1,4 +1,12 @@
 {
+  "homepage": "https://ayodejisamuel.github.io/PINGIT",
+  "name": "snabby",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "dependencies": {
     "buffer": "^6.0.3",
     "gh-pages": "^6.1.1",
@@ -11,14 +19,5 @@
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "homepage": "https://ayodejisamuel.github.io/PINGIT",
-  "name": "snabby",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }

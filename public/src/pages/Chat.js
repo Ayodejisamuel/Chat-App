@@ -8,12 +8,15 @@ import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
 
+
+
 const Chat = () => {
   const socket = useRef();
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
+
 
   useEffect(() => {
     const checkUser = async () => {
@@ -23,15 +26,26 @@ const Chat = () => {
         setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
       }
     };
+
     checkUser();
   }, [navigate]);
 
   useEffect(() => {
     if (currentUser) {
+
+      console.log('connecting to user')
       socket.current = io(host);
+
       socket.current.emit('add-user', currentUser._id);
+
+      socket.current.on("connect", () => {
+        console.log('Socket connected:', socket.current.id);
+      });
+
+      console.log('socket connected to user', socket.current.connected);
       return () => {
         if (socket.current) {
+          console.log('disconnecting from user')
           socket.current.disconnect();
         }
       };

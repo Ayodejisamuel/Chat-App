@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import userRoute from './routes/usersRoute.js'; 
 import messageRoute from './routes/messagesRoute.js';
 
-dotenv.config(); 
+dotenv.config();
 
 const app = express();  
 const server = http.createServer(app); 
@@ -15,11 +15,12 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
+    methods: ['*'],
     credentials: true,
   },
 });
-
+  
+ 
 globalThis.onlineUsers = new Map();
 
 io.on('connection', (socket) => {
@@ -30,10 +31,15 @@ io.on('connection', (socket) => {
     console.log(`User ${userId} added with socket ID ${socket.id}`);
   });
 
+  
+
   socket.on('send-message', (data) => {
     const sendUserSocket = globalThis.onlineUsers.get(data.to);
+    console.log(`Sending message to  ${sendUserSocket}, message: ${data.message}`);
     if (sendUserSocket) {
       socket.to(sendUserSocket).emit('message-received', data.message);
+    }else {
+      console.log('User not online or socket not fount')
     }
   });
 
@@ -57,7 +63,7 @@ mongoose.connect(MONGODB_URI,  )
   .then(() => console.log(`Connected to MongoDB at ${MONGODB_URI}`))
   .catch((err) => console.error('Error connecting to MongoDB:', err));
 
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 5000; 
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
