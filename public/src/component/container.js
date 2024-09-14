@@ -38,6 +38,7 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
 
 
   const handleSendMessage = async (message) => {
+
     try {
       await axios.post(sendMessageRoute, {
         from: currentUser._id,
@@ -64,6 +65,10 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
   };
 
   // Listen for new messages via socket
+
+  useEffect( () => {
+      socket.on('')
+  })
   useEffect(() => {
     if (socket.current) {
       console.log('listening for messages...', socket.current.connected)
