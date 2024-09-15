@@ -14,7 +14,6 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const scrollDown = useRef();
 
-
   useEffect(() => {
     const postChat = async () => {
       try {
@@ -33,12 +32,8 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
     postChat();
   },[currentUser, currentChat]);
 
-   
-  
-
 
   const handleSendMessage = async (message) => {
-
     try {
       await axios.post(sendMessageRoute, {
         from: currentUser._id,
@@ -65,26 +60,23 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
   };
 
   // Listen for new messages via socket
+    
+    useEffect(() => {
+      if (socket.current) {
+        console.log('listening for messages...', socket.current.connected)
+        socket.current.on("message-received", (message) => {
+          setArrivalMessage({ fromSelf: false, message });
+          console.log('received message', message)
+        });
 
-  useEffect( () => {
-      socket.on('')
-  })
-  useEffect(() => {
-    if (socket.current) {
-      console.log('listening for messages...', socket.current.connected)
-      socket.current.on("message-received", (message) => {
-        setArrivalMessage({ fromSelf: false, message });
-        console.log('received message', message)
-      });
-
-      console.log('after lsiteneing')
-    }
+ 
+      }
 
     // Clean up socket listener when the component unmounts
 
     return () => {
-      if (socket.current) {
-        socket.current.off("message-received");
+      if (socket.currentChat) {
+        socket.currentChat.off("message-received");
       }
 
       console.log('i am receiving messages', )
@@ -94,12 +86,17 @@ const ChatContainer = ({ currentChat, currentUser, socket }) => {
   useEffect(() => {
     if (arrivalMessage) {
       setMessages((prevMessages) => [...prevMessages, arrivalMessage]);
-      scrollDown.current?.scrollIntoView({ behavior: "smooth" });
+ 
     }
   }, [arrivalMessage]);
   
    
-
+useEffect(() => {
+  if(scrollDown.current){
+    scrollDown.current.scrollIntoView({ behavior: "smooth" });
+  }
+ 
+}, [messages])
   return (
     <>
       {currentChat && (

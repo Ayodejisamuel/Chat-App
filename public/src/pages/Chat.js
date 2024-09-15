@@ -3,27 +3,29 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
-import { getAllUsersRoute, host } from "../utils/APIRoutes";
+import { getAllUsersRoute, } from "../utils/APIRoutes";
 import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
 
-
-
 const Chat = () => {
-  const socket = useRef();
+  const socket = useRef(null);
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
 
-
   useEffect(() => {
+    const storedUser = localStorage.getItem("chat-app-user");
+    if (!storedUser) {
+      navigate("/Chat-App/login");
+    }
     const checkUser = async () => {
-      if (!localStorage.getItem("chat-app-user")) {
+      try {
+        setCurrentUser(await JSON.parse(storedUser));
+      } catch (error) {
+        console.log("error getting user ", error);
         navigate("/Chat-App/login");
-      } else {
-        setCurrentUser(await JSON.parse(localStorage.getItem("chat-app-user")));
       }
     };
 
@@ -32,23 +34,24 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-
-      console.log('connecting to user')
+      const host = 'http://localhost:5000';
       socket.current = io(host);
-
-      socket.current.emit('add-user', currentUser._id);
+      socket.current.emit("add-user", currentUser._id);
+ 
 
       socket.current.on("connect", () => {
-        console.log('Socket connected:', socket.current.id);
+        console.log('socket connected', socket.current.connected);
+        console.log("Socket connected id", socket.current.id);
+        console.log('socket connected', socket.current.connected);
       });
 
-      console.log('socket connected to user', socket.current.connected);
-      return () => {
-        if (socket.current) {
-          console.log('disconnecting from user')
-          socket.current.disconnect();
-        }
-      };
+//this return cleans my socket before fetching contacts. it is bad.
+      // return () => {
+      //   if (socket.current) {
+      //     console.log("disconnecting from user");
+      //     socket.current.disconnect();
+      //   }
+      // };
     }
   }, [currentUser]);
 
@@ -57,7 +60,9 @@ const Chat = () => {
       try {
         if (currentUser) {
           if (currentUser.isAvatarImageSet) {
-            const { data } = await axios.get(`${getAllUsersRoute}/${currentUser._id}`);
+            const { data } = await axios.get(
+              `${getAllUsersRoute}/${currentUser._id}`
+            );
             setContacts(data);
           } else {
             navigate("/setAvatar");
