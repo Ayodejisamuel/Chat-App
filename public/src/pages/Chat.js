@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
-import { getAllUsersRoute, } from "../utils/APIRoutes";
+import { getAllUsersRoute } from "../utils/APIRoutes";
 import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
@@ -14,6 +14,7 @@ const Chat = () => {
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [currentChat, setCurrentChat] = useState(undefined);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("chat-app-user");
@@ -24,11 +25,10 @@ const Chat = () => {
       try {
         setCurrentUser(await JSON.parse(storedUser));
       } catch (error) {
-        console.log("error getting user ", error);
+        console.log("Error getting user: ", error);
         navigate("/Chat-App/login");
       }
     };
-
     checkUser();
   }, [navigate]);
 
@@ -37,21 +37,10 @@ const Chat = () => {
       const host = 'http://localhost:5000';
       socket.current = io(host);
       socket.current.emit("add-user", currentUser._id);
- 
 
       socket.current.on("connect", () => {
-        console.log('socket connected', socket.current.connected);
-        console.log("Socket connected id", socket.current.id);
-        console.log('socket connected', socket.current.connected);
+        console.log("Socket connected", socket.current.id);
       });
-
-//this return cleans my socket before fetching contacts. it is bad.
-      // return () => {
-      //   if (socket.current) {
-      //     console.log("disconnecting from user");
-      //     socket.current.disconnect();
-      //   }
-      // };
     }
   }, [currentUser]);
 
@@ -60,9 +49,7 @@ const Chat = () => {
       try {
         if (currentUser) {
           if (currentUser.isAvatarImageSet) {
-            const { data } = await axios.get(
-              `${getAllUsersRoute}/${currentUser._id}`
-            );
+            const { data } = await axios.get(`${getAllUsersRoute}/${currentUser._id}`);
             setContacts(data);
           } else {
             navigate("/setAvatar");
@@ -72,18 +59,18 @@ const Chat = () => {
         console.error("Error fetching contacts:", error);
       }
     };
-
     fetchContacts();
   }, [currentUser, navigate]);
 
   const handleChatChange = (chat) => {
     setCurrentChat(chat);
+    setIsChatOpen(true);
   };
 
   return (
-    <Wrapper>
+    <Wrapper isChatOpen={isChatOpen}>
       <div className="container">
-        <div className="contact-section">
+        <div className={`contact-section ${isChatOpen ? 'hidden-mobile' : ''}`}>
           <Contact
             contacts={contacts}
             currentUser={currentUser}
@@ -91,9 +78,11 @@ const Chat = () => {
           />
         </div>
 
-        <div className="chat-section">
+        <div className={`chat-section ${!isChatOpen ? 'hidden-mobile' : ''}`}>
           {currentChat === undefined ? (
+
             <Welcome currentUser={currentUser} />
+
           ) : (
             <ChatContainer
               currentChat={currentChat}
@@ -107,13 +96,10 @@ const Chat = () => {
   );
 };
 
-export default Chat;
-
 const Wrapper = styled.div`
   background-color: #0a0a23;
   height: 100vh;
   width: 100vw;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,6 +127,10 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    @media screen and (max-width: 720px) {
+      display: ${({ isChatOpen }) => (isChatOpen ? "none" : "flex")};
+    }
   }
 
   .chat-section {
@@ -149,5 +139,19 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    @media screen and (max-width: 720px) {
+      display: ${({ isChatOpen }) => (isChatOpen ? "flex" : "none")};
+    }
+  }
+
+  .hidden-mobile {
+    display: none;
+
+    @media screen and (min-width: 720px) {
+      display: flex;
+    }
   }
 `;
+
+export default Chat;
