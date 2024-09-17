@@ -38,15 +38,7 @@ const ChatInput = ({ handleSendMessage }) => {
                <Picker
                 onEmojiSelect={handleEmojiClick}
                 theme="dark"  
-                emojiTooltip="false"
-                // previewPosition="none"  
-                // emojiButtonSize={32}  
-                // emojiSize={16}  
-                // // color='red'
-                // styled={true}
-                // defaultSkin={2}
-                // skin={2}
-                // color='white'
+           
                 
               /> 
             </div>
@@ -146,6 +138,7 @@ const Container = styled.div`
     border-radius: 5px;
     width: 100%;
     padding: 0.3rem;
+      border-radius: 24px;
   }
 
   .form-containerr {
@@ -156,6 +149,7 @@ const Container = styled.div`
   }
 
   .input-field {
+
     flex: 1;
     background-color: transparent;
     color: white;
@@ -164,21 +158,24 @@ const Container = styled.div`
     font-size: 1rem;
     outline: none;
     height: 40px;
+
   }
 
   .send {
+
     background-color: #9a86f3;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 40px;
     width: 50px;
+    border-radius: 24px;
+    
   }
 
   .send-icon {
