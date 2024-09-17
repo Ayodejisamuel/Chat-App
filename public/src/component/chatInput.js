@@ -29,34 +29,45 @@ const ChatInput = ({ handleSendMessage }) => {
   };
 
   return (
-    <>
-      <Container>
-        <div className="button-container">
-          <div className="emojidiv">
-            <FaSmile className="emoji" onClick={handleHideShowEmoji} />
-            {showHideEmoji && (
-              <div className="emoji-picker">
-                <Picker onEmojiSelect={handleEmojiClick} />
-              </div>
-            )}
-          </div>
-          <div className="form-container">
-            <form onSubmit={sendChat} className="form-containerr">
-              <input
-                className="input-field"
-                type="text"
-                placeholder="Enter message here"
-                value={message}
-                onChange={handleChange}
-              />
-              <button type="submit" className="send" onClick={sendChat}>
-                <IoMdSend className="send-icon" />
-              </button>
-            </form>
-          </div>
+    <Container>
+      <div className="button-container">
+        <div className="emojidiv">
+          <FaSmile className="emoji" onClick={handleHideShowEmoji} />
+          {showHideEmoji && (
+            <div className="emoji-picker">
+               <Picker
+                onEmojiSelect={handleEmojiClick}
+                theme="dark"  
+                emojiTooltip="false"
+                // previewPosition="none"  
+                // emojiButtonSize={32}  
+                // emojiSize={16}  
+                // // color='red'
+                // styled={true}
+                // defaultSkin={2}
+                // skin={2}
+                // color='white'
+                
+              /> 
+            </div>
+          )}
         </div>
-      </Container>
-    </>
+        <div className="form-container">
+          <form onSubmit={sendChat} className="form-containerr">
+            <input
+              className="input-field"
+              type="text"
+              placeholder="Enter message here"
+              value={message}
+              onChange={handleChange}
+            />
+            <button type="submit" className="send" onClick={sendChat}>
+              <IoMdSend className="send-icon" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </Container>
   );
 };
 
@@ -79,9 +90,14 @@ const Container = styled.div`
   }
 
   .emoji {
-    font-size: 1.5rem;
-    color: yellow;
+    font-size: 1.8rem;
+    color: #9a86f3;
     cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+      color: #b497f5;
+    }
   }
 
   .emoji-picker {
@@ -89,6 +105,38 @@ const Container = styled.div`
     bottom: 60px;
     left: 0;
     z-index: 100;
+    background-color: #1e1e2e;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+    .emoji-mart {
+      width: 250px;
+      background-color: #1e1e2e;
+      border-radius: 10px;
+      color: white;
+    }
+
+    .emoji-mart-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: #1e1e2e #080420; /* Customize the scroll bar */
+    }
+
+    .emoji-mart-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .emoji-mart-scroll::-webkit-scrollbar-thumb {
+      background-color: #9a86f3; /* Match chat theme color */
+      border-radius: 10px;
+    }
+
+    .emoji-mart-scroll::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    .emoji-mart-emoji {
+      font-size: 1.5rem;
+    }
   }
 
   .form-container {
@@ -97,14 +145,14 @@ const Container = styled.div`
     background-color: #ffffff34;
     border-radius: 5px;
     width: 100%;
-    padding: 0.3rem;  
+    padding: 0.3rem;
   }
 
   .form-containerr {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 0.5rem; 
+    gap: 0.5rem;
   }
 
   .input-field {
@@ -115,7 +163,7 @@ const Container = styled.div`
     padding: 0.5rem;
     font-size: 1rem;
     outline: none;
-    height: 40px;  
+    height: 40px;
   }
 
   .send {
@@ -129,8 +177,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px; 
-    width: 50px;  
+    height: 40px;
+    width: 50px;
   }
 
   .send-icon {

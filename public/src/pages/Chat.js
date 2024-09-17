@@ -143,31 +143,31 @@ const Wrapper = styled.div`
     flex-direction: column;
     overflow-y: auto;
    transition: transform 0.3s ease;
-  transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(-100%)' : 'translateX(0)')};
+  // transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(-100%)' : 'translateX(0)')};
 
   @media screen and (min-width: 720px) {
     transform: translateX(0);
   }
-    @media screen and (max-width: 720px) {
-      display: ${({ isChatOpen }) => (isChatOpen ? "none" : "flex")};
+    @media screen and (max-width: 720px) {  
+      // display: ${({ isChatOpen }) => (isChatOpen ? "none" : "flex")};
     }
   }
 
   .chat-section {
-    background-color:  #080420;
+    background-color: ;
     padding: 1rem;
     display: flex;
     flex-direction: column;
     overflow-y:hidden;
     overflow-x: hidden;
  transition: transform 0.3s ease;
-  transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(0)' : 'translateX(100%)')};
+  // transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(0)' : 'translateX(100%)')};
 
   @media screen and (min-width: 720px) {
     transform: translateX(0);
   }
     @media screen and (max-width: 720px) {
-      display: ${({ isChatOpen }) => (isChatOpen ? "flex" : "none")};
+      // display: ${({ isChatOpen }) => (isChatOpen ? "flex" : "none")};
     }
   }
 
