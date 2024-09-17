@@ -77,10 +77,11 @@ export default Contact;
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-row: 10%, 80%, 10%
   overflow: hidden;
+  overflow-x: hidden;
   // padding: 1rem;
-  background-color: #0d0d30;
+  
 
 
   .brand {
@@ -126,16 +127,15 @@ const Wrapper = styled.div`
 
     .contact {
       // background-color: #1a1a3d;
-      min-height: 4.5rem;
-      width: 90%;
-      cursor: pointer;
-      border-radius: 0.5rem;
-      padding: 0.8rem;
-      display: flex;
-      gap: 1rem;
-      align-items: center;
+    display: flex;
+    width: 90%;
+    justify-content: left;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem 0;
+    margin-top: 1rem;
+      align-items: left;
       transition: background-color 0.3s ease;
-
       &:hover {
         background-color: #7a76d3;
       }

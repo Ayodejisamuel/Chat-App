@@ -7,6 +7,7 @@ import { getAllUsersRoute } from "../utils/APIRoutes";
 import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Chat = () => {
   const socket = useRef(null);
@@ -20,6 +21,7 @@ const Chat = () => {
     const storedUser = localStorage.getItem("chat-app-user");
     if (!storedUser) {
       navigate("/Chat-App/login");
+      
     }
     const checkUser = async () => {
       try {
@@ -32,6 +34,7 @@ const Chat = () => {
     checkUser();
   }, [navigate]);
 
+
   useEffect(() => {
     if (currentUser) {
       const host = 'http://localhost:5000';
@@ -43,6 +46,7 @@ const Chat = () => {
       });
     }
   }, [currentUser]);
+
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -67,6 +71,14 @@ const Chat = () => {
     setIsChatOpen(true);
   };
 
+  const handleBackClick = () => {
+    setCurrentChat(undefined);
+    setIsChatOpen(false);
+
+  }
+
+
+
   return (
     <Wrapper isChatOpen={isChatOpen}>
       <div className="container">
@@ -79,6 +91,7 @@ const Chat = () => {
         </div>
 
         <div className={`chat-section ${!isChatOpen ? 'hidden-mobile' : ''}`}>
+     
           {currentChat === undefined ? (
 
             <Welcome currentUser={currentUser} />
@@ -88,6 +101,7 @@ const Chat = () => {
               currentChat={currentChat}
               currentUser={currentUser}
               socket={socket}
+              handleBackClick={handleBackClick}
             />
           )}
         </div>
@@ -97,7 +111,8 @@ const Chat = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #0a0a23;
+  background-color:  #ffffff34;
+ 
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -106,10 +121,10 @@ const Wrapper = styled.div`
 
   .container {
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 20% 80%;
     height: 100vh;
-    width: 100vw;
-    background-color: #0a0a23;
+    width:100vw;
+    background-color:#0d0d30;
     overflow: hidden;
 
     @media screen and (min-width: 720px) and (max-width: 1024px) {
@@ -127,19 +142,30 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+   transition: transform 0.3s ease;
+  transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(-100%)' : 'translateX(0)')};
 
+  @media screen and (min-width: 720px) {
+    transform: translateX(0);
+  }
     @media screen and (max-width: 720px) {
       display: ${({ isChatOpen }) => (isChatOpen ? "none" : "flex")};
     }
   }
 
   .chat-section {
-    background-color: #0a0a23;
+    background-color:  #080420;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y:hidden;
+    overflow-x: hidden;
+ transition: transform 0.3s ease;
+  transform: ${({ isChatOpen }) => (isChatOpen ? 'translateX(0)' : 'translateX(100%)')};
 
+  @media screen and (min-width: 720px) {
+    transform: translateX(0);
+  }
     @media screen and (max-width: 720px) {
       display: ${({ isChatOpen }) => (isChatOpen ? "flex" : "none")};
     }

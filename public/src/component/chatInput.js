@@ -97,14 +97,14 @@ const Container = styled.div`
     background-color: #ffffff34;
     border-radius: 5px;
     width: 100%;
-    padding: 0.3rem; /* Adjust padding to reduce gap */
+    padding: 0.3rem;  
   }
 
   .form-containerr {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 0.5rem; /* Adjust the space between input and button */
+    gap: 0.5rem; 
   }
 
   .input-field {
@@ -115,7 +115,7 @@ const Container = styled.div`
     padding: 0.5rem;
     font-size: 1rem;
     outline: none;
-    height: 40px; /* Set consistent height for input */
+    height: 40px;  
   }
 
   .send {
@@ -129,8 +129,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px; /* Set consistent height for the button */
-    width: 50px; /* Adjust width to fit the icon */
+    height: 40px; 
+    width: 50px;  
   }
 
   .send-icon {

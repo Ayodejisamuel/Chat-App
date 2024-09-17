@@ -1,18 +1,17 @@
 import React from "react";
 import { FaPowerOff } from "react-icons/fa";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Logout = () => {
-
+  const navigate = useNavigate()
  const handleClick = () => {
     localStorage.clear()
-    window.location.href = "/";
-    console.log("Logged Out");
- 
+    navigate('/Chat-App/login')
+    // console.log("Logged Out"); 
  }
-
-
-
 
   return (
     <>

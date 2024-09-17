@@ -1,4 +1,5 @@
-{  "homepage": "https://ayodejisamuel.github.io/PINGIT",
+{ 
+    "homepage": "https://ayodejisamuel.github.io/PINGIT",
     "name": "chat-app-backend",
     "version": "1.0.0",
     "description": "first socket.io app",
@@ -13,6 +14,7 @@
         "eject": "react-scripts eject",
         "start": "nodemon index.js"
     },
+
     "author": "",
     "license": "ISC",
     "dependencies": {
