@@ -45,7 +45,6 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
         message,
       });
 
-   
       socket.current.emit("send-message", {
         to: currentChat._id,
         from: currentUser._id,

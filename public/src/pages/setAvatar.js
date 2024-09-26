@@ -31,7 +31,7 @@ const SetAvatar = () => {
 const user = localStorage.getItem('chat-app-user')
 
     if (!user) {
-      navigate("/login");
+      navigate("/Chat-App/login");
     }
   }, [navigate]);
 

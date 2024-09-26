@@ -32,7 +32,6 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputText);
 
     if (handleValidation()) {
       console.log("In validation", registerRoute);
@@ -46,9 +45,9 @@ const Register = () => {
         });
 
         if (data.status === true) {
-          localStorage.setItem("chat-app-user", JSON.stringify(data.user));
 
-          navigate("/setAvatar");
+          localStorage.setItem("chat-app-user", JSON.stringify(data.user));
+          navigate("/Chat-App/setAvatar");
         } else {
           toast.error("Email alreday used, kindly login", toastOptions);
         }
@@ -133,7 +132,7 @@ const Register = () => {
           autoComplete="on"
           required
         />
-        <button type="submit">Submit</button>
+        <button type="submit">create User</button>
         <span>
           Already have an account? <Link to="/login">LOGIN</Link>
         </span>

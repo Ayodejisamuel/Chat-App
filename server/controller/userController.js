@@ -50,7 +50,7 @@ export const login = async (req, res, next) => {
 
     user.password = undefined;
 
-    return res.json({ status: true, user });
+    return res.json({ status: true, user }); 
   } catch (ex) {
     next(ex);
   }

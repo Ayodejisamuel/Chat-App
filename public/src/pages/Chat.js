@@ -7,7 +7,6 @@ import { getAllUsersRoute } from "../utils/APIRoutes";
 import Contact from "../component/Contact";
 import Welcome from "../component/Welcome";
 import ChatContainer from "../component/container";
-import { FaArrowLeft } from "react-icons/fa";
 
 const Chat = () => {
   const socket = useRef(null);
