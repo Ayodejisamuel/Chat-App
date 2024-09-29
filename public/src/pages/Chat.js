@@ -36,7 +36,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-      const host = 'http://localhost:5000';
+      const host = 'https://chat-app-ntot.onrender.com';
       socket.current = io(host);
       socket.current.emit("add-user", currentUser._id);
 
