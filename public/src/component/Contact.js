@@ -1,27 +1,25 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import pingit from '../Images/pingit.webp'
+import hambugger from "../Images/hambugger.png";
+ 
 
 const Contact = ({ currentUser, contacts, changeChat }) => {
-
   const [currentUsername, setCurrentUsername] = useState(undefined);
   const [currentUserImage, setCurrentUserImage] = useState(undefined);
   const [selectedContactIndex, setSelectedContactIndex] = useState(undefined);
 
-
   useEffect(() => {
-    
     if (currentUser) {
+      
       setCurrentUsername(currentUser.username);
       setCurrentUserImage(currentUser.avatarImage);
+
     }
   }, [currentUser]);
-
 
   const changeCurrentChat = (index, contact) => {
     setSelectedContactIndex(index);
     changeChat(contact);
-    
   };
 
   return (
@@ -29,39 +27,32 @@ const Contact = ({ currentUser, contacts, changeChat }) => {
       {currentUsername && currentUserImage && (
         <Wrapper>
           <div className="brand">
-            <img src={pingit} alt="logo"></img>
+            <img src={hambugger} className="hambugger" alt="logo"></img>
             <h1>PingIT</h1>
           </div>
           <div className="contacts">
-          {contacts.map((contact, index) => {
-
-  return (
-    <div
-      key={contact._id}
-      className={`contact ${
-        index === selectedContactIndex ? "selected" : ""
-      }`}
-      onClick={() => changeCurrentChat(index, contact)}
-    >
-      <div className="avatar">
-        <img
-          src={contact.avatarImage}
-          alt="avatar"
-        />
-      </div>
-      <div className="username">
-        <h1>{contact.username}</h1>
-      </div>
-    </div>
-  );
-})}
+            {contacts.map((contact, index) => {
+              return (
+                <div
+                  key={contact._id}
+                  className={`contact ${
+                    index === selectedContactIndex ? "selected" : ""
+                  }`}
+                  onClick={() => changeCurrentChat(index, contact)}
+                >
+                  <div className="avatar">
+                    <img src={contact.avatarImage} alt="avatar" />
+                  </div>
+                  <div className="username">
+                    <h1>{contact.username}</h1>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="current-user">
             <div className="avatar">
-              <img
-                src={currentUserImage}
-                alt="avatar"
-              />
+              <img src={currentUserImage} alt="avatar" />
             </div>
             <div className="username">
               <h2>{currentUsername}</h2>
@@ -96,6 +87,11 @@ const Wrapper = styled.div`
     height: 3rem;
     width: 3rem;
     margin-right: 1rem
+    }
+    .hambugger {
+
+    height:1.7rem
+    
     }
     h1 {
       color: white;
