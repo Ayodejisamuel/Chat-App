@@ -8,6 +8,8 @@ import axios from "axios";
 import pingit from "../Images/pingit.webp";
 import { registerRoute } from "../utils/APIRoutes";
 
+
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -18,6 +20,8 @@ const Register = () => {
     confirmPassword: "",
   });
 
+
+
   const toastOptions = {
     position: "bottom-right",
     autoClose: "8000ms",
@@ -25,6 +29,8 @@ const Register = () => {
     draggable: true,
     theme: "dark",
   };
+
+
 
   const handleChange = (e) => {
     setInputText({ ...inputText, [e.target.name]: e.target.value });
@@ -48,6 +54,7 @@ const Register = () => {
 
           localStorage.setItem("chat-app-user", JSON.stringify(data.user));
           navigate("/Chat-App/setAvatar");
+          
         } else {
           toast.error("Email alreday used, kindly login", toastOptions);
         }
@@ -90,7 +97,7 @@ const Register = () => {
     }
     return true;
   };
-
+  
   return (
     <Wrapper>
       <form onSubmit={handleSubmit}>
@@ -134,7 +141,7 @@ const Register = () => {
         />
         <button type="submit">create User</button>
         <span>
-          Already have an account? <Link to="/login">LOGIN</Link>
+          Already have an account? <Link to="/Chat-App/login">LOGIN</Link>
         </span>
       </form>
 

@@ -8,9 +8,9 @@ import userRoute from './routes/usersRoute.js';
 import messageRoute from './routes/messagesRoute.js';
 
 dotenv.config();
-
 const app = express();  
 const server = http.createServer(app); 
+
 
 const io = new Server(server, {
   cors: {
@@ -19,8 +19,7 @@ const io = new Server(server, {
     credentials: true,
   },
 });
-  
- 
+   
 globalThis.onlineUsers = new Map();
 
 io.on('connection', (socket) => {
@@ -31,7 +30,6 @@ io.on('connection', (socket) => {
     console.log(`User ${userId} added with socket ID ${socket.id}`);
   });
 
-  
 
   socket.on('send-message', (data) => {
     const sendUserSocket = globalThis.onlineUsers.get(data.to);

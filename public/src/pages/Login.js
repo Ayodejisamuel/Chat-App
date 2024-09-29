@@ -119,7 +119,7 @@ const Login = () => {
                 
                 <button  type="submit">Login</button>
                 <span>
-                    Don't' have an account? <Link to="/register">REGISTER</Link>
+                    Don't' have an account? <Link to="/Chat-App/register">REGISTER</Link>
                 </span>
             </form>
             <ToastContainer />

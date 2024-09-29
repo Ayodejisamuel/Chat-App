@@ -8,13 +8,16 @@ import axios from "axios";
 import { SetAvatarRoute } from "../utils/APIRoutes";
 
 
+
+
 const SetAvatar = () => {
   
   const api = "https://api.multiavatar.com/45678945";
   const navigate = useNavigate();
-
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
+
+
 
 
   const toastOptions = {
@@ -26,10 +29,9 @@ const SetAvatar = () => {
   };
 
 
-  useEffect(() => {
-    
-const user = localStorage.getItem('chat-app-user')
 
+useEffect(() => {  
+const user = localStorage.getItem('chat-app-user')
     if (!user) {
       navigate("/Chat-App/login");
     }
@@ -47,6 +49,7 @@ const user = localStorage.getItem('chat-app-user')
         image: avatars[selectedAvatar],
       });
 console.log('image url', data.image)
+
       if (data.isSet) {
         user.isAvatarImageSet = true;
         user.avatarImage = data.image;
@@ -61,16 +64,12 @@ console.log('avatar image successfully set')
     }
   };
 
-  
-
   useEffect(() => {
     const fetchAvatars = async () => {
       const data = [];
       for (let i = 0; i < 4; i++) {
         try {
-          
           const response = await axios.get(`${api}/${Math.round(Math.random() * 1000)}.svg`);
-      
           data.push(response.config.url); 
         } catch (error) {
           console.error(error);
@@ -82,6 +81,7 @@ console.log('avatar image successfully set')
     };
   
     fetchAvatars();
+    
   },[]);
   
 
