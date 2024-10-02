@@ -14,6 +14,7 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
 
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0)
   const scrollDown = useRef();
   
   useEffect(() => {
@@ -66,10 +67,15 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
     
     useEffect(() => {
       if (socket.current) {
-        // console.log('listening for messages...', socket.current.connected)
+ 
         socket.current.on("message-received", (message) => {
           setArrivalMessage({ fromSelf: false, message });
-          // console.log('received message', message)
+          if(currentChat && currentChat.id === message.from ) {
+              setUnreadCount( (prevCount) => {
+                return prevCount + 1;
+              })
+          }
+ 
         });
 
  
@@ -89,11 +95,15 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
   useEffect(() => {
     if (arrivalMessage) {
       setMessages((prevMessages) => [...prevMessages, arrivalMessage]);
- 
     }
   }, [arrivalMessage]);
   
-   
+  useEffect(() => {
+    if(currentChat) {
+      setUnreadCount(0);
+    }
+}, [currentChat, ]);
+ 
 useEffect(() => {
   if(scrollDown.current){
     scrollDown.current.scrollIntoView({ behavior: "smooth" });
@@ -108,7 +118,11 @@ useEffect(() => {
             <div className="user-details">
              <FaArrowLeft className="back-btn" onClick={handleBackClick}/>
               <div className="user-avatar">
+
                 <img src={currentChat.avatarImage} alt="avatar" />
+                {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}</span>
+              ) }
+               
               </div>
               <div className="username">
                 <h3>{currentChat.username}</h3>
@@ -238,7 +252,19 @@ background-color:  #080420;
   border-radius: 1rem;
   color: #d1d1d1;
 }
-
+.unread-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .chat-input {
   padding: 1rem;
   background-color: #1a1a40;

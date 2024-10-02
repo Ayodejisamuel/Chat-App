@@ -28,6 +28,7 @@ const ChatInput = ({ handleSendMessage }) => {
     }
   };
 
+
   return (
     <Container>
       <div className="button-container">
@@ -38,8 +39,6 @@ const ChatInput = ({ handleSendMessage }) => {
                <Picker
                 onEmojiSelect={handleEmojiClick}
                 theme="dark"  
-           
-                
               /> 
             </div>
           )}
@@ -53,14 +52,17 @@ const ChatInput = ({ handleSendMessage }) => {
               value={message}
               onChange={handleChange}
             />
+
             <button type="submit" className="send" onClick={sendChat}>
               <IoMdSend className="send-icon" />
             </button>
+
           </form>
         </div>
       </div>
     </Container>
   );
+
 };
 
 const Container = styled.div`
@@ -162,7 +164,6 @@ const Container = styled.div`
   }
 
   .send {
-
     background-color: #9a86f3;
     font-size: 2rem;
     color: white;
