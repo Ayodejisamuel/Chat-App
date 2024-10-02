@@ -70,7 +70,7 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
  
         socket.current.on("message-received", (message) => {
           setArrivalMessage({ fromSelf: false, message });
-          if(currentChat && currentChat.id === message.from ) {
+          if(currentChat && currentChat._id === message.from ) {
               setUnreadCount( (prevCount) => {
                 return prevCount + 1;
               })
