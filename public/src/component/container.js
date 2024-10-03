@@ -116,7 +116,7 @@ useEffect(() => {
         <Wrapper>
           <div className="chat-header">
             <div className="user-details">
-             {/* <FaArrowLeft className="back-btn" onClick={handleBackClick}/> */}
+             <FaArrowLeft className="back-btn" onClick={handleBackClick}/>
               <div className="user-avatar">
 
                 <img src={currentChat.avatarImage} alt="avatar" />
@@ -124,6 +124,7 @@ useEffect(() => {
                
               </div>
               <div className="username">
+                <span>it should have work here</span>
                 <h3>{currentChat.username}</h3>  {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}it must show l12</span>
               ) }
               </div>
@@ -204,6 +205,7 @@ background-color:  #080420;
   .username {
     color: white;
     font-size: 1rem;
+    position: relative;
   }
 }
 
