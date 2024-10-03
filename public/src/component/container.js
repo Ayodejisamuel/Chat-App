@@ -124,9 +124,11 @@ useEffect(() => {
                
               </div>
               <div className="username">
-                <span>it should have work here</span>
+        
                 <h3>{currentChat.username}</h3>  {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}it must show l12</span>
+                
               ) }
+                      <span>it should have work here</span>
               </div>
             </div>
             <Logout />
@@ -207,6 +209,7 @@ background-color:  #080420;
     font-size: 1rem;
     position: relative;
   }
+
 }
 
 .chat-container {
