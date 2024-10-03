@@ -120,12 +120,12 @@ useEffect(() => {
               <div className="user-avatar">
 
                 <img src={currentChat.avatarImage} alt="avatar" />
-                {unreadCount > 0 && ( <span className='unread-count'>{unreadCount} l12</span>
-              ) }
+              
                
               </div>
               <div className="username">
-                <h3>{currentChat.username}</h3>
+                <h3>{currentChat.username}</h3>  {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}it must show l12</span>
+              ) }
               </div>
             </div>
             <Logout />
