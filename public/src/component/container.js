@@ -124,7 +124,7 @@ useEffect(() => {
                
               </div>
               <div className="username">
-                <h3>{currentChat.username}</h3>  {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}it must show l12</span>
+                <h3>{currentChat.usernae}</h3>  {unreadCount > 0 && ( <span className='unread-count'>{unreadCount}it must show l12</span>
               ) }
               </div>
             </div>
