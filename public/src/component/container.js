@@ -67,16 +67,19 @@ const ChatContainer = ({ currentChat, currentUser, socket, handleBackClick}) => 
     
     useEffect(() => {
       if (socket.current) {
- 
         socket.current.on("message-received", (message) => {
           setArrivalMessage({ fromSelf: false, message });
-          if(currentChat && currentChat._id === message.from ) {
+            if(currentChat && currentChat._id === message.fromSelf ) {
+              
+            console.log('new message from currentChat,', message)
               setUnreadCount( (prevCount) => {
                 return prevCount + 1;
               })
           }
+          console.log('is message from Self', message.fromSelf);
  
         });
+
 
  
       }
@@ -160,6 +163,8 @@ useEffect(() => {
     </>
   );
 };
+
+
 
 
 export default ChatContainer;
@@ -271,6 +276,7 @@ display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .chat-input {
     position: fixed; 
     bottom: 0;
