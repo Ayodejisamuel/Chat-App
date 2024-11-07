@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+ 
+
 import axios from "axios";
 import { SetAvatarRoute } from "../utils/APIRoutes";
 
@@ -59,7 +61,7 @@ console.log('image url', data.image)
 console.log('avatar image successfully set')
         navigate("/Chat-App/");
       } else {
-        toast.error("Error setting avatar. Please try again.", toastOptions);
+        toast.error("Error setting avatar, try again.", toastOptions);
       }
     }
   };
