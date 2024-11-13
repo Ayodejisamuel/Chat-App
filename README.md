@@ -2,15 +2,13 @@ Chat App
 
 
 
-A full-featured chat application built with React, Node.js, Express, and Socket.io for real-time messaging.
+A full-featured chat application built with React, Node.js, Express, and Socket.io for real-time messaging
 
-This app enables users to register, log in, and engage in one-on-one messaging with online presence indicators, notifications, and message status.
+This app enables users to register, log in, and engage in one-on-one messaging.
 
 Features
 User Authentication: Register and login functionality.
 Real-Time Messaging: Seamless messaging with Socket.io integration for real-time updates.
-Notifications: Unread message counters to show when a new message is received.
-Online Status: Indicates when users are online.
 Responsive Design: Optimized for both desktop and mobile devices.
 Tech Stack
 Frontend: React, styled-components
@@ -21,6 +19,8 @@ Installation and Setup
 Prerequisites
 Node.js (version 14+)
 MongoDB database
+
+
 Instructions
 
 
