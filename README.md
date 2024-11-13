@@ -1,4 +1,7 @@
 Chat App
+
+
+
 A full-featured chat application built with React, Node.js, Express, and Socket.io for real-time messaging.
 
 This app enables users to register, log in, and engage in one-on-one messaging with online presence indicators, notifications, and message status.
@@ -19,11 +22,13 @@ Prerequisites
 Node.js (version 14+)
 MongoDB database
 Instructions
-Clone the repository:
+
+
+Clone the repository: 
 
 bash
 Copy code
-git clone https://github.com/yourusername/chat-app.git
+git clone https://github.com/Ayodejisamuel/chat-app.git
 cd chat-app
 Install dependencies for both frontend and backend:
 
