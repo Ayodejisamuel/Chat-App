@@ -9,18 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { SetAvatarRoute } from "../utils/APIRoutes";
 
-
-
-
 const SetAvatar = () => {
   
   const api = "https://api.multiavatar.com/45678945";
   const navigate = useNavigate();
   const [avatars, setAvatars] = useState([]);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
-
-
-
 
   const toastOptions = {
     position: "bottom-right",
@@ -29,8 +23,6 @@ const SetAvatar = () => {
     draggable: true,
     theme: "dark",
   };
-
-
 
 useEffect(() => {  
 const user = localStorage.getItem('chat-app-user')
@@ -78,7 +70,6 @@ console.log('avatar image successfully set')
           toast.error("Failed to load avatars. Please try again.", toastOptions);
         }
       }
-  
       setAvatars(data);
     };
   
