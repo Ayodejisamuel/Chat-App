@@ -1,13 +1,29 @@
 {
   "files": {
-    "main.css": "/Chat-App/static/css/main.f230b2ae.css",
-    "main.js": "/Chat-App/static/js/main.3509eae3.js",
-    "index.html": "/Chat-App/index.html",
-    "main.f230b2ae.css.map": "/Chat-App/static/css/main.f230b2ae.css.map",
-    "main.3509eae3.js.map": "/Chat-App/static/js/main.3509eae3.js.map"
+    "main.css": "/static/css/main.b383f8fd.css",
+    "main.js": "/static/js/main.14b9be14.js",
+    "static/media/Layer 2.png": "/static/media/Layer 2.40d1d51d0a3600822ec2.png",
+    "static/media/TestLogo.svg": "/static/media/TestLogo.88af223195d0f4c09a8c609cf21c6d07.svg",
+    "static/media/settings_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/settings_FILL0_wght300_GRAD0_opsz24.54c7341e4f983882bc667b5404b24d06.svg",
+    "static/media/group_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/group_FILL0_wght300_GRAD0_opsz24.8e2b21f0f3058da9a4720e82e371322a.svg",
+    "static/media/PhoneIcon.svg": "/static/media/PhoneIcon.651ef2ea6751099115cff0f3f6333c42.svg",
+    "static/media/InsuranceIcon.svg": "/static/media/InsuranceIcon.e06040ecffafaa86eb268bc53110b000.svg",
+    "static/media/FemaleIcon.svg": "/static/media/FemaleIcon.4f67c7525381848d66443cb1dd206a56.svg",
+    "static/media/BirthIcon.svg": "/static/media/BirthIcon.21b4f31e965a171528a0e5c485cf5bfe.svg",
+    "static/media/calendar_today_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/calendar_today_FILL0_wght300_GRAD0_opsz24.a507bf19d18aaf3bc29cf5e18b348a13.svg",
+    "static/media/more_vert_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/more_vert_FILL0_wght300_GRAD0_opsz24.d16a730a98a471ca6001685ef82c547d.svg",
+    "static/media/home_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/home_FILL0_wght300_GRAD0_opsz24.9721604287b838f7bb2d308da7ad58c0.svg",
+    "static/media/more_horiz_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/more_horiz_FILL0_wght300_GRAD0_opsz24.54b8cdaddb378799dd125df66df6b519.svg",
+    "static/media/search_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/search_FILL0_wght300_GRAD0_opsz24.dc77fcb80c94b9c4b3251f3c6c817344.svg",
+    "index.html": "/index.html",
+    "static/media/credit_card_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/credit_card_FILL0_wght300_GRAD0_opsz24.f6fad4a06c12d5125e8d504e78466c90.svg",
+    "static/media/chat_bubble_FILL0_wght300_GRAD0_opsz24.svg": "/static/media/chat_bubble_FILL0_wght300_GRAD0_opsz24.d19000e7b1297adb19ca6baf1d700a9e.svg",
+    "static/media/ArrowDown.svg": "/static/media/ArrowDown.b9c4d70b22fa0deaa1a5c9a9b6db8157.svg",
+    "main.b383f8fd.css.map": "/static/css/main.b383f8fd.css.map",
+    "main.14b9be14.js.map": "/static/js/main.14b9be14.js.map"
   },
   "entrypoints": [
-    "static/css/main.f230b2ae.css",
-    "static/js/main.3509eae3.js"
+    "static/css/main.b383f8fd.css",
+    "static/js/main.14b9be14.js"
   ]
 }
